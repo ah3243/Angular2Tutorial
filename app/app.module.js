@@ -15,6 +15,7 @@ var forms_1 = require('@angular/forms'); // Allows two way binding in input form
 var app_component_1 = require('./app.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
+var dashboard_component_1 = require('./dashboard.component');
 // Import services
 var hero_service_1 = require('./hero.service');
 // Import routes
@@ -31,7 +32,8 @@ var AppModule = (function () {
             // Make decalrations so directives are recognised
             declarations: [app_component_1.AppComponent,
                 hero_detail_component_1.HeroDetailComponent,
-                heroes_component_1.HeroesComponent],
+                heroes_component_1.HeroesComponent,
+                dashboard_component_1.DashboardComponent],
             bootstrap: [app_component_1.AppComponent],
             // Services available in all child components
             providers: [hero_service_1.HeroService]
