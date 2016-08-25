@@ -10,9 +10,14 @@ import { HeroesComponent } from './heroes.component';
 // Import services
 import { HeroService }   from './hero.service';
 
+// Import routes
+import { routing }        from './app.routing';
+
 @NgModule({
   imports:      [ BrowserModule,
-                  FormsModule ],
+                  FormsModule,
+                  routing
+                ],
 
   // Make decalrations so directives are recognised
   declarations: [ AppComponent,

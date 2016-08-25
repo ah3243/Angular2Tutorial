@@ -17,13 +17,17 @@ var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
 // Import services
 var hero_service_1 = require('./hero.service');
+// Import routes
+var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
-                forms_1.FormsModule],
+                forms_1.FormsModule,
+                app_routing_1.routing
+            ],
             // Make decalrations so directives are recognised
             declarations: [app_component_1.AppComponent,
                 hero_detail_component_1.HeroDetailComponent,
