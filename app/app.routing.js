@@ -13,7 +13,7 @@ var appRoutes = [
     },
     {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
     }
 ];
