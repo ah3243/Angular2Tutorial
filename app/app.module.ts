@@ -6,23 +6,33 @@ import { FormsModule }   from '@angular/forms'; // Allows two way binding in inp
 import { AppComponent }  from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from './heroes.component';
+import { DashboardComponent } from './dashboard.component';
+
+// Import routes
+import { routing }        from './app.routing';
 
 // Import services
 import { HeroService }   from './hero.service';
 
 @NgModule({
   imports:      [ BrowserModule,
-                  FormsModule ],
+                  FormsModule,
+                  routing],
 
   // Make decalrations so directives are recognised
   declarations: [ AppComponent,
-  				  HeroDetailComponent,
-            HeroesComponent],
+        				  HeroDetailComponent,
+                  HeroesComponent,
+                  DashboardComponent],
 
-  bootstrap:    [ AppComponent ],
+// Services available in all child components
+  providers: [ HeroService ],
 
-  // Services available in all child components
-  providers: [ HeroService ]
+  bootstrap:    [ AppComponent ]
+
+  
 })
 
-export class AppModule { }
+export class AppModule { 
+
+}
