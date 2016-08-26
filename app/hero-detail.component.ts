@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
 
-import { Hero }             from './hero';
+import { HeroService }             from './hero.service';
 
 @Component({
     selector: "my-hero-detail",
@@ -12,10 +13,30 @@ import { Hero }             from './hero';
                 <label>name: </label>
                 <input [(ngModel)]="hero.name" placeholder="name"/>
             </div>
+            <button (click)="goBack()">Back</button>
 		</div>
     `
 })
-export class HeroDetailComponent {
+export class HeroDetailComponent implements OnInit{
+    constructor{
+        private heroService: HeroService,
+        private route: ActivatedRoute
+    }
+
     @Input()
         hero: Hero;
+
+    ngOnInit(): void{
+        this.route.params.forEach((params: Params)=> {
+
+            // Convert routeparameter (string) to (number) with +
+            let id = +params['id'];
+            this.heroService.getHero(id)
+                .then(hero => this.hero = hero);
+        });
+    }
+
+    goback(): void{
+        window.history.back();
+    }
 }

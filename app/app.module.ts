@@ -22,14 +22,14 @@ import { routing }        from './app.routing';
 
   // Make decalrations so directives are recognised
   declarations: [ AppComponent,
-  				  HeroDetailComponent,
-            HeroesComponent,
-            DashboardComponent],
+                  HeroDetailComponent,
+                  HeroesComponent,
+                  DashboardComponent],
 
   bootstrap:    [ AppComponent ],
 
   // Services available in all child components
-  providers: [ HeroService ]
+  providers:    [ HeroService ]
 })
 
 export class AppModule { }

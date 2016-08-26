@@ -11,12 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var hero_service_1 = require('./hero.service');
 var DashboardComponent = (function () {
+    // Inject the HeroService in a constructor, hold in private heroService field
     function DashboardComponent(heroService) {
         this.heroService = heroService;
+        // Define a heroes array property
         this.heroes = [];
     }
+    // ngOnInit lifecycle hook
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // Call the service to get the heroes
         this.heroService.getHeroes()
             .then(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
     };
