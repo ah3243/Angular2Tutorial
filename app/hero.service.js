@@ -17,25 +17,62 @@ var HeroService = (function () {
         this.heroesUrl = 'app/heroes'; // URL to web api
     }
     ;
+    // GET (get hero data)
     HeroService.prototype.getHeroes = function () {
         return this.http.get(this.heroesUrl)
             .toPromise()
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
-    HeroService.prototype.handleError = function (error) {
-        console.log('An Error Occurred. ' + error);
-        return Promise.reject(error.message || error);
-    };
-    // // Example method to demonstrate delay in retreiving data
-    // getHeroesSlowly(): Promise<Hero[]> {
-    //     return new Promise<Hero[]>(resolve =>
-    //         setTimeout(() => resolve(HEROES), 5000) // 2 seconds
-    //     );
-    // }
+    // retrieve specific record
     HeroService.prototype.getHero = function (id) {
         return this.getHeroes()
             .then(function (heroes) { return heroes.find(function (hero) { return hero.id === id; }); });
+    };
+    // Save with put or post methods
+    HeroService.prototype.save = function (hero) {
+        if (hero.id) {
+            return this.put(hero);
+        }
+        return this.post(hero);
+    };
+    // DELETE (Remove specific hero item)
+    HeroService.prototype.delete = function (hero) {
+        var headers = new http_1.Headers;
+        headers.append('Content-Type', 'application/json');
+        // Append the id of specific hero to url
+        var url = "" + this.heroesUrl + hero.id;
+        return this.http
+            .delete(url, { headers: headers })
+            .toPromise()
+            .catch(this.handleError);
+    };
+    // POST (add new hero data)
+    HeroService.prototype.post = function (hero) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json' });
+        return this.http
+            .post(this.heroesUrl, JSON.stringify(hero), { headers: headers })
+            .toPromise()
+            .then(function (res) { return res.json().data; })
+            .catch(this.handleError);
+    };
+    // PUT (update individual hero)
+    HeroService.prototype.put = function (hero) {
+        var headers = new http_1.Headers;
+        headers.append('Content-Type', 'application/json');
+        // Append the id of specific hero to url
+        var url = this.heroesUrl + "/" + hero.id;
+        return this.http
+            .put(url, JSON.stringify(hero), { headers: headers })
+            .toPromise()
+            .then(function () { return hero; })
+            .catch(this.handleError);
+    };
+    // Handle and catch rejects/erros
+    HeroService.prototype.handleError = function (error) {
+        console.log('An Error Occurred. ' + error);
+        return Promise.reject(error.message || error);
     };
     HeroService = __decorate([
         core_1.Injectable(), 
