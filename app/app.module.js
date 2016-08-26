@@ -11,15 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms'); // Allows two way binding in input form
-// Import components
+var http_1 = require('@angular/http');
+// Imports for loading and configuring the in-memory web api
+var http_2 = require('@angular/http');
+var angular2_in_memory_web_api_1 = require('angular2-in-memory-web-api');
+var in_memory_data_service_1 = require('./in-memory-data.service');
+// Import Root components/routes
 var app_component_1 = require('./app.component');
+var app_routing_1 = require('./app.routing');
+// Import components
 var hero_detail_component_1 = require('./hero-detail.component');
 var heroes_component_1 = require('./heroes.component');
 var dashboard_component_1 = require('./dashboard.component');
 // Import services
 var hero_service_1 = require('./hero.service');
-// Import routes
-var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,16 +32,21 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                app_routing_1.routing
+                app_routing_1.routing,
+                http_1.HttpModule
             ],
             // Make decalrations so directives are recognised
             declarations: [app_component_1.AppComponent,
                 hero_detail_component_1.HeroDetailComponent,
                 heroes_component_1.HeroesComponent,
                 dashboard_component_1.DashboardComponent],
-            bootstrap: [app_component_1.AppComponent],
             // Services available in all child components
-            providers: [hero_service_1.HeroService]
+            providers: [
+                hero_service_1.HeroService,
+                { provide: http_2.XHRBackend, useClass: angular2_in_memory_web_api_1.InMemoryBackendService },
+                { provide: angular2_in_memory_web_api_1.SEED_DATA, useClass: in_memory_data_service_1.InMemoryDataService } // in-mem server data
+            ],
+            bootstrap: [app_component_1.AppComponent],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
