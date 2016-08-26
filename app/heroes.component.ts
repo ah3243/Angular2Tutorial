@@ -73,6 +73,7 @@ import { HeroService } from './hero.service';
 export class HeroesComponent implements OnInit {
 	heroes: Hero[];
 	selectedHero: Hero; // uninitialised hero variable
+	
 	constructor(private heroService: HeroService ){ };
 
 	// Get data from the 'heroService'' private variable

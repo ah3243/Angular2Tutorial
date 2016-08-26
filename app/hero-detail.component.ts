@@ -3,25 +3,16 @@ import { ActivatedRoute, Params }   from '@angular/router';
 
 import { HeroService }             from './hero.service';
 
+
 @Component({
     selector: "my-hero-detail",
-    template: `
-        <div *ngIf="hero">
-			<h2>{{hero.name}} details!</h2>
-			<div><label>id: </label>{{hero.id}}</div>
-            <div>
-                <label>name: </label>
-                <input [(ngModel)]="hero.name" placeholder="name"/>
-            </div>
-            <button (click)="goBack()">Back</button>
-		</div>
-    `
+    templateUrl: "app/hero-detail.component.html"
 })
 export class HeroDetailComponent implements OnInit{
-    constructor{
+
+    constructor(
         private heroService: HeroService,
-        private route: ActivatedRoute
-    }
+        private route: ActivatedRoute){}    
 
     @Input()
         hero: Hero;
