@@ -15,6 +15,7 @@ import { HeroService } from './hero.service';
 export class HeroesComponent implements OnInit {
 	heroes: Hero[];
 	selectedHero: Hero; // uninitialised hero variable
+	error: any;
 
 	constructor(
 		private router: Router,

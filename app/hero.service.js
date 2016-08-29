@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/toPromise'); // import observable convertion operator
 var HeroService = (function () {
     function HeroService(http) {
         this.http = http;
@@ -20,7 +20,7 @@ var HeroService = (function () {
     // GET (get hero data)
     HeroService.prototype.getHeroes = function () {
         return this.http.get(this.heroesUrl)
-            .toPromise()
+            .toPromise() // Converts the returned observable to a promise
             .then(function (response) { return response.json().data; })
             .catch(this.handleError);
     };
@@ -75,6 +75,7 @@ var HeroService = (function () {
         return Promise.reject(error.message || error);
     };
     HeroService = __decorate([
+        // import observable convertion operator
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
     ], HeroService);

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Hero }       from './hero';
 import { Http, Headers, Response }       from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/toPromise'; // import observable convertion operator
 
 @Injectable()
 export class HeroService{
@@ -14,7 +14,7 @@ export class HeroService{
     // GET (get hero data)
     getHeroes(): Promise<Hero[]>{
         return this.http.get(this.heroesUrl)
-                   .toPromise()
+                   .toPromise() // Converts the returned observable to a promise
                    .then(response => response.json().data as Hero[])
                    .catch(this.handleError);
     }
